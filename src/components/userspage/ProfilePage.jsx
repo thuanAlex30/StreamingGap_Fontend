@@ -11,9 +11,9 @@ function ProfilePage() {
 
     const fetchProfileInfo = async () => {
         try {
-            const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+            const token = localStorage.getItem('token');
             const response = await UserService.getYourProfile(token);
-            setProfileInfo(response.user); // Ensure it maps to the 'user' field in your response
+            setProfileInfo(response.user);
         } catch (error) {
             console.error('Error fetching profile information:', error);
         }
