@@ -1,14 +1,15 @@
 import axios from "axios";
 
-class UserService{
-    static BASE_URL = "http://localhost:1010"
+class UserService {
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; // Use an environment variable
 
-    static async login(email, password) {
+    static async login(username, password) {
         try {
-            const response = await axios.post(`${UserService.BASE_URL}/auth/login`, { email, password });
+            const response = await axios.post(`${UserService.BASE_URL}/auth/login`, { username, password });
             return response.data;
         } catch (err) {
-            throw err;
+            console.error('Login Error:', err.response ? err.response.data : err.message);
+            throw new Error('Login failed. Please check your credentials and try again.');
         }
     }
 
@@ -19,7 +20,18 @@ class UserService{
             });
             return response.data;
         } catch (err) {
-            throw err;
+            console.error('Registration Error:', err.response ? err.response.data : err.message);
+            throw new Error('Registration failed. Please try again later.');
+        }
+    }
+
+    static async verifyCode(email, code) {
+        try {
+            const response = await axios.post(`${UserService.BASE_URL}/auth/verify`, { email, code });
+            return response.data;
+        } catch (err) {
+            console.error('Verification Error:', err.response ? err.response.data : err.message);
+            throw new Error('Verification failed. Please check the code and try again.');
         }
     }
 
@@ -37,80 +49,87 @@ class UserService{
         }
     }
 
-
-    static async getYourProfile(token){
-        try{
-            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`,
-                {
-                    headers: {Authorization: `Bearer ${token}`}
-                })
+    static async getYourProfile(token) {
+        try {
+            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response.data;
-        }catch(err){
-            throw err;
+        } catch (err) {
+            console.error('Error fetching profile:', err.response ? err.response.data : err.message);
+            throw new Error('Failed to fetch profile. Please try again later.');
         }
     }
 
-    static async getUserById(userId, token){
-        try{
-            const response = await axios.get(`${UserService.BASE_URL}/admin/get-users/${userId}`,
-                {
-                    headers: {Authorization: `Bearer ${token}`}
-                })
+    static async getUserById(userId, token) {
+        try {
+            const response = await axios.get(`${UserService.BASE_URL}/admin/get-users/${userId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response.data;
-        }catch(err){
-            throw err;
+        } catch (err) {
+            console.error('Error fetching user by ID:', err.response ? err.response.data : err.message);
+            throw new Error('Failed to fetch user. Please try again later.');
         }
     }
 
-    static async deleteUser(userId, token){
-        try{
-            const response = await axios.delete(`${UserService.BASE_URL}/admin/delete/${userId}`,
-                {
-                    headers: {Authorization: `Bearer ${token}`}
-                })
+    static async deleteUser(userId, token) {
+        try {
+            const response = await axios.delete(`${UserService.BASE_URL}/admin/delete/${userId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response.data;
-        }catch(err){
-            throw err;
+        } catch (err) {
+            console.error('Error deleting user:', err.response ? err.response.data : err.message);
+            throw new Error('Failed to delete user. Please try again later.');
         }
     }
 
-
-    static async updateUser(userId, userData, token){
-        try{
-            const response = await axios.put(`${UserService.BASE_URL}/admin/update/${userId}`, userData,
-                {
-                    headers: {Authorization: `Bearer ${token}`}
-                })
+    static async updateUser(userId, userData, token) {
+        try {
+            const response = await axios.put(`${UserService.BASE_URL}/admin/update/${userId}`, userData, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response.data;
-        }catch(err){
-            throw err;
+        } catch (err) {
+            console.error('Error updating user:', err.response ? err.response.data : err.message);
+            throw new Error('Failed to update user. Please try again later.');
         }
     }
 
-    static logout(){
-        localStorage.removeItem('token')
-        localStorage.removeItem('role')
+    static logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
     }
 
-    static isAuthenticated(){
-        const token = localStorage.getItem('token')
-        return !!token
+    static isAuthenticated() {
+        const token = localStorage.getItem('token');
+        return !!token;
     }
 
-    static isAdmin(){
-        const role = localStorage.getItem('role')
-        return role === 'ADMIN'
+    static isAdmin() {
+        const role = localStorage.getItem('role');
+        return role === 'ADMIN';
     }
 
-    static isUser(){
-        const role = localStorage.getItem('role')
-        return role === 'USER'
+    static isUser() {
+        const role = localStorage.getItem('role');
+        return role === 'USER';
     }
 
-    static adminOnly(){
+    static adminOnly() {
         return this.isAuthenticated() && this.isAdmin();
     }
 
+    static async getSongById(songId) {
+        try {
+            const response = await axios.get(`${this.BASE_URL}/songs/${songId}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching song details:", error);
+            throw new Error('Failed to fetch song details. Please try again later.');
+        }
+    }
 }
 
 export default UserService;

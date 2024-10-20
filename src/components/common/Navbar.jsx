@@ -6,8 +6,6 @@ function Navbar() {
     const isAuthenticated = UserService.isAuthenticated();
     const isAdmin = UserService.isAdmin();
 
-
-
     const handleLogout = () => {
         const confirmDelete = window.confirm('Are you sure you want to logout this user?');
         if (confirmDelete) {
@@ -15,12 +13,12 @@ function Navbar() {
         }
     };
 
-
     return (
         <nav>
             <ul>
-                {!isAuthenticated && <li><Link to="/">thuan Dev</Link></li>}
+                {!isAuthenticated && <li><Link to="/">Phegon Dev</Link></li>}
                 {isAuthenticated && <li><Link to="/profile">Profile</Link></li>}
+                {isAuthenticated && <li><Link to="/audio/1">Audio Player</Link></li>} {/* Direct link to AudioPlayer */}
                 {isAdmin && <li><Link to="/admin/user-management">User Management</Link></li>}
                 {isAuthenticated && <li><Link to="/" onClick={handleLogout}>Logout</Link></li>}
             </ul>

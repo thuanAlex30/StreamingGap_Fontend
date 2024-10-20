@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
-
 function UserManagementPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
-
   useEffect(() => {
     fetchUsers();
   }, []);
-
   const fetchUsers = async () => {
     setLoading(true);
     setError(null);
@@ -29,9 +25,6 @@ function UserManagementPage() {
       setLoading(false);
     }
   };
-
-
-
   const deleteUser = async (userId) => {
     try {
       const confirmDelete = window.confirm('Are you sure you want to delete this user?');
@@ -45,14 +38,11 @@ function UserManagementPage() {
       alert('Failed to delete user. Please try again.');
     }
   };
-
   const handleUpdate = (userId) => {
     navigate(`/update-user/${userId}`);
   };
-
   if (loading) return <div>Loading users...</div>;
   if (error) return <div>{error}</div>;
-
   return (
       <div className="user-management-container">
         <h2>User Management Page</h2>
@@ -101,5 +91,4 @@ function UserManagementPage() {
       </div>
   );
 }
-
 export default UserManagementPage;

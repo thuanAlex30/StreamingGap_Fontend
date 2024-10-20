@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
-
 function UpdateUser() {
   const navigate = useNavigate();
   const { userId } = useParams(); // Extract userId from URL params
-
   const [userData, setUserData] = useState({
     username: '',
     email: '',
     role: '',
     avatar_url: ''
   });
-
   useEffect(() => {
     fetchUserDataById(userId);
   }, [userId]);
-
   const fetchUserDataById = async (userId) => {
     try {
       const token = localStorage.getItem('token');
@@ -27,7 +23,6 @@ function UpdateUser() {
       console.error('Error fetching user data:', error);
     }
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevUserData) => ({
@@ -35,7 +30,6 @@ function UpdateUser() {
       [name]: value
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -48,7 +42,6 @@ function UpdateUser() {
       alert('Error updating user');
     }
   };
-
   return (
       <div className="auth-container">
         <h2>Update User</h2>
@@ -97,5 +90,4 @@ function UpdateUser() {
       </div>
   );
 }
-
 export default UpdateUser;
