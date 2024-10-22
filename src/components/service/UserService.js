@@ -6,12 +6,27 @@ class UserService {
     static async login(username, password) {
         try {
             const response = await axios.post(`${UserService.BASE_URL}/auth/login`, { username, password });
+            // Store the token and username in localStorage
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('username', response.data.username); // assuming the response contains the username
             return response.data;
         } catch (err) {
             console.error('Login Error:', err.response ? err.response.data : err.message);
             throw new Error('Login failed. Please check your credentials and try again.');
         }
     }
+    static async getAllSongs(token) {
+        try {
+            const response = await axios.get(`${this.BASE_URL}/songs`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            return response.data; // Assuming the API response is structured as shown
+        } catch (error) {
+            console.error("Error fetching songs:", error);
+            throw new Error('Failed to fetch songs. Please try again later.');
+        }
+    }
+
 
     static async register(userData, token) {
         try {
@@ -121,15 +136,7 @@ class UserService {
         return this.isAuthenticated() && this.isAdmin();
     }
 
-    static async getSongById(songId) {
-        try {
-            const response = await axios.get(`${this.BASE_URL}/songs/${songId}`);
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching song details:", error);
-            throw new Error('Failed to fetch song details. Please try again later.');
-        }
-    }
+
 }
 
 export default UserService;
