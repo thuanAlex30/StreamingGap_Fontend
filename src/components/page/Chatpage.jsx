@@ -212,7 +212,7 @@ const ChatPage = () => {
     const fetchChatHistory = async (user1, user2) => {
         try {
             const response = await axios.get(
-                `http://localhost:1010/api/messages/history/${user1}/${user2}`,
+                `http://localhost:1010/chatmessages/api/messages/history/${user1}/${user2}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -263,16 +263,14 @@ const ChatPage = () => {
                 <div className="flex flex-col w-[50%] mt-3">
                     {/* Chat Box */}
                     <div
-                        className="p-3 flex-grow overflow-hidden bg-gray-300 border border-green-500 flex flex-col space-y-2 rounded-md"
-                        style={{ height: "500px" }}
+                        className="p-3 bg-gray-300 border border-green-500 flex flex-col space-y-2 rounded-md"
+                        style={{height: "500px", overflowY: "auto", maxHeight: "500px"}}
                     >
                         {tab === "CHATROOM"
                             ? publicChats.map((message, index) => (
                                 <div
                                     className={`flex ${
-                                        message.senderName !== username
-                                            ? "justify-start"
-                                            : "justify-end"
+                                        message.senderName !== username ? "justify-start" : "justify-end"
                                     }`}
                                     key={index}
                                 >
@@ -296,19 +294,15 @@ const ChatPage = () => {
                                             {message.message}
                                         </div>
                                         {message.media &&
-                                            message.media
-                                                .split(";")[0]
-                                                .split("/")[0]
-                                                .split(":")[1] === "image" && (
-                                                <img src={message.media} alt="" width={"250px"} />
+                                            message.media.split(";")[0].split("/")[0].split(":")[1] ===
+                                            "image" && (
+                                                <img src={message.media} alt="" width={"250px"}/>
                                             )}
                                         {message.media &&
-                                            message.media
-                                                .split(";")[0]
-                                                .split("/")[0]
-                                                .split(":")[1] === "video" && (
+                                            message.media.split(";")[0].split("/")[0].split(":")[1] ===
+                                            "video" && (
                                                 <video width="320" height="240" controls>
-                                                    <source src={message.media} type="video/mp4" />
+                                                    <source src={message.media} type="video/mp4"/>
                                                 </video>
                                             )}
                                     </div>
@@ -317,9 +311,7 @@ const ChatPage = () => {
                             : privateChats.get(tab)?.map((message, index) => (
                                 <div
                                     className={`flex ${
-                                        message.senderName !== username
-                                            ? "justify-start"
-                                            : "justify-end"
+                                        message.senderName !== username ? "justify-start" : "justify-end"
                                     }`}
                                     key={index}
                                 >
@@ -330,25 +322,21 @@ const ChatPage = () => {
                                                 : "bg-blue-500 rounded-t-lg rounded-l-lg"
                                         }`}
                                     >
-                                        <div
-                                            className={
-                                                message.senderName === username ? "text-white" : ""
-                                            }
-                                        >
+                                        {/* Display sender's name if the message is not from the logged-in user */}
+                                        {message.senderName !== username && (
+                                            <div className="rounded bg-blue-400 mb-2 p-1 text-white">
+                                                {message.senderName}
+                                            </div>
+                                        )}
+                                        <div className={message.senderName === username ? "text-white" : ""}>
                                             {message.message}
                                         </div>
                                         {message.media &&
-                                            message.media
-                                                .split(";")[0]
-                                                .split("/")[0]
-                                                .split(":")[1] === "image" && (
+                                            message.media.split(";")[0].split("/")[0].split(":")[1] === "image" && (
                                                 <img src={message.media} alt="" width={"250px"} />
                                             )}
                                         {message.media &&
-                                            message.media
-                                                .split(";")[0]
-                                                .split("/")[0]
-                                                .split(":")[1] === "video" && (
+                                            message.media.split(";")[0].split("/")[0].split(":")[1] === "video" && (
                                                 <video width="320" height="240" controls>
                                                     <source src={message.media} type="video/mp4" />
                                                 </video>
@@ -356,7 +344,9 @@ const ChatPage = () => {
                                     </div>
                                 </div>
                             ))}
+
                     </div>
+
 
                     {/* Message Box */}
                     <div className="flex items-center p-2">
@@ -410,7 +400,7 @@ const ChatPage = () => {
                     </div>
                 </div>
                 <div className="pl-4 pt-3">
-                    <SearchBar onUserSelect={handlePrivateMessage} />
+                    <SearchBar onUserSelect={handlePrivateMessage}/>
                 </div>
             </div>
         </div>
