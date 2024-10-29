@@ -1,7 +1,8 @@
-
+/* Header Navbar */
 .navbar {
     background-color: #121212;
     padding: 15px 20px;
+    position: relative; /* Thêm position relative cho navbar */
 }
 
 .navbar-brand img {
@@ -26,7 +27,7 @@
     color: #1db954;
 }
 
-
+/* Tìm kiếm */
 .form-control {
     background-color: #333;
     border: none;
@@ -62,6 +63,7 @@
     color: #fff;
 }
 
+/* Hình ảnh trong Navbar */
 .navbar .nav-link img {
     width: 25px;
     height: 25px;
@@ -82,6 +84,7 @@
     margin-right: 20px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -93,4 +96,38 @@
         margin-right: 0;
         margin-bottom: 10px;
     }
+}
+
+/* Kết quả Tìm kiếm */
+.search-results {
+    background-color: white;
+    position: absolute; /* Đảm bảo vị trí tuyệt đối để hiển thị đúng */
+    top: 60px; /* Điều chỉnh vị trí để phù hợp với giao diện */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Thêm bo góc cho phần kết quả */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng cho phần kết quả */
+}
+
+.search-results ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Xóa margin */
+}
+
+.search-results li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s; /* Thêm hiệu ứng chuyển màu nền */
+}
+
+.search-results li:last-child {
+    border-bottom: none; /* Xóa đường viền dưới cho mục cuối cùng */
+}
+
+.search-results li:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
 }

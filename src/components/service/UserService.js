@@ -27,7 +27,6 @@ class UserService {
         }
     }
 
-
     static async register(userData, token) {
         try {
             const response = await axios.post(`${UserService.BASE_URL}/auth/register`, userData, {
