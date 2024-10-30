@@ -1,0 +1,44 @@
+.player-container {
+    width: auto;
+    height: auto;
+    background-color: #121212;
+    color: #fff;
+    padding: 65px;
+}
+img{
+    object-fit: contain;
+}
+.songs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+
+.song-card:hover {
+    transform: scale(1.05);
+}
+
+.song-card h5 {
+    margin: 10px 0 5px;
+}
+
+.song-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+.song-card {
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    margin-bottom: 100px;
+    padding: 50px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+.cra{
+
+}

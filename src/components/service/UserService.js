@@ -6,10 +6,59 @@ class UserService {
     static async login(username, password) {
         try {
             const response = await axios.post(`${UserService.BASE_URL}/auth/login`, { username, password });
+            // Store the token and username in localStorage
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('username', response.data.username); // assuming the response contains the username
             return response.data;
         } catch (err) {
             console.error('Login Error:', err.response ? err.response.data : err.message);
             throw new Error('Login failed. Please check your credentials and try again.');
+        }
+    }
+        static getToken() {
+        return localStorage.getItem('token');
+    }
+    static async getSongById(songId) {
+        try {
+            const token = this.getToken();
+            if (!token) {
+                throw new Error('Token not found. Please login again.');
+            }
+
+            const response = await axios.get(`${this.BASE_URL}/songs/${songId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching song by ID:', error);
+            throw new Error('Failed to load song. Please try again later.');
+        }
+    }
+
+    static async getAllSongs(token) {
+        try {
+            const response = await axios.get(`${this.BASE_URL}/songs`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            return response.data; // Assuming the API response is structured as shown
+        } catch (error) {
+            console.error("Error fetching songs:", error);
+            throw new Error('Failed to fetch songs. Please try again later.');
+        }
+    }
+
+    static async getSongId(songId,token) {
+        try {
+            const response = await axios.get(`${this.BASE_URL}/songs/${songId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            return response.data; // Assuming the API response is structured as shown
+        } catch (error) {
+            console.error("Error fetching songs:", error);
+            throw new Error('Failed to fetch songs. Please try again later.');
         }
     }
 
@@ -121,15 +170,7 @@ class UserService {
         return this.isAuthenticated() && this.isAdmin();
     }
 
-    static async getSongById(songId) {
-        try {
-            const response = await axios.get(`${this.BASE_URL}/songs/${songId}`);
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching song details:", error);
-            throw new Error('Failed to fetch song details. Please try again later.');
-        }
-    }
+
 }
 
 export default UserService;

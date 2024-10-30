@@ -17,7 +17,7 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             const userData = await UserService.login(username, password);
-            console.log(userData); // Ensure to see the structure of userData
+            // console.log(userData); // Ensure to see the structure of userData
             if (userData.token) {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
