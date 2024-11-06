@@ -13,11 +13,11 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const userData = await UserService.login(username, password);
-            // console.log(userData); // Ensure to see the structure of userData
+            console.log(userData); // Ensure to see the structure of userData
             if (userData.token) {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
@@ -26,11 +26,8 @@ const LoginPage = () => {
                 setError(userData.message);
             }
         } catch (error) {
-            console.log(error);
-            setError(error.message);
-            setTimeout(() => {
-                setError('');
-            }, 5000);
+            console.error("Error logging in:", error);
+            setError("Invalid username or password.");
         }
     };
 
@@ -101,7 +98,7 @@ const LoginPage = () => {
 
                 {error && <Typography variant="body2" color="error" align="center">{error}</Typography>}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleLogin}>
                     <TextField
                         label="Email hoặc tên người dùng"
                         variant="filled"
