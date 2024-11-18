@@ -1,7 +1,7 @@
 import axios from "axios";
 
 class UserService {
-    static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap-6ci0.onrender.com"; // Use an environment variable
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com"; // Use an environment variable
 
     static async login(username, password) {
         try {
