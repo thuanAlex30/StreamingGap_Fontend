@@ -24,7 +24,7 @@ const SearchBar = ({ onUserSelect }) => {
 
         try {
             setError(null);
-            const response = await axios.get(`https://streaminggap-6ci0.onrender.com/chatmessages/search?username=${username}`, {
+            const response = await axios.get(`https://streaminggap.onrender.com/chatmessages/search?username=${username}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
