@@ -31,14 +31,10 @@ const AdminAlbum = () => {
                     return;
                 }
 
-                const response = await Axios.get('http://localhost:1010/albums', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (response.data && response.data.albumList) {
-                    setAlbums(response.data.albumList);
+                const response = await UserService.getAllAlbums(token); // Use UserService method
+                
+                if (response && response.albumList) {
+                    setAlbums(response.albumList);
                 } else {
                     setError("No albums found.");
                 }
@@ -52,7 +48,6 @@ const AdminAlbum = () => {
 
         fetchAlbums();
     }, [number]);
-
     const handleFormChange = (e) => {
         setFormData({
             ...formData,
@@ -88,11 +83,7 @@ const AdminAlbum = () => {
     const handleDelete = async (albumId) => {
         try {
             const token = localStorage.getItem('token');
-            await Axios.delete(`http://localhost:1010/albums/${albumId}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                }
-            });
+        
 
             setAlbums(albums.filter((album) => album.album_id !== albumId));
         } catch (err) {

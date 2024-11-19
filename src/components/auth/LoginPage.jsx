@@ -13,18 +13,32 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+    setError('');
         try {
-            const response = await UserService.login(username, password);
-            if (response.token) {
-                localStorage.setItem("auth-token", response.token);
-                localStorage.setItem("chat-username", username);
-                navigate("/chat"); // Điều hướng đến trang chat khi đăng nhập thành công
+            const userData = await UserService.login(username, password);
+            console.log(userData.role); // Ensure to see the structure of userData
+            if (userData.token) {
+                localStorage.setItem('token', userData.token);
+                localStorage.setItem('role', userData.role);
+                if(userData.role === "ADMIN"){
+                   
+                    navigate('/adminpage')
+                }else if(userData.role === "USER")
+                {
+                    navigate('/profile')
+                }
+                ; // Redirect to profile page upon success
+            } else {
+                setError(userData.message);
             }
         } catch (error) {
-            console.error("Error logging in:", error);
-            setError("Invalid username or password.");
+            console.log(error);
+            setError(error.message);
+            setTimeout(() => {
+                setError('');
+            }, 5000);
         }
     };
 
@@ -95,7 +109,7 @@ const LoginPage = () => {
 
                 {error && <Typography variant="body2" color="error" align="center">{error}</Typography>}
 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
                     <TextField
                         label="Email hoặc tên người dùng"
                         variant="filled"
