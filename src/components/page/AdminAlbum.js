@@ -31,7 +31,7 @@ const AdminAlbum = () => {
                     return;
                 }
 
-                const response = await Axios.get('http://localhost:1010/albums', {
+                const response = await Axios.get('https://streaminggap.onrender.com/albums', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -88,7 +88,7 @@ const AdminAlbum = () => {
     const handleDelete = async (albumId) => {
         try {
             const token = localStorage.getItem('token');
-            await Axios.delete(`http://localhost:1010/albums/${albumId}`, {
+            await Axios.delete(`https://streaminggap.onrender.com/albums/${albumId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 }
