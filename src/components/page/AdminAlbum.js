@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
     Box, Button, CircularProgress, Grid, Table, TableBody,
     TableCell, TableContainer, TableHead, TableRow, Paper,
-    TextField, Typography, Alert, Snackbar
+    TextField, Typography, Alert, Snackbar, Dialog, DialogTitle,
+    DialogContent, DialogActions
 } from '@mui/material';
 import Axios from 'axios';
 import UserService from '../service/UserService';
@@ -20,6 +21,7 @@ const AdminAlbum = () => {
         release_date: '',
     });
     const [number, setNumber] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchAlbums = async () => {
@@ -31,8 +33,8 @@ const AdminAlbum = () => {
                     return;
                 }
 
-                const response = await UserService.getAllAlbums(token); // Use UserService method
-                
+                const response = await UserService.getAllAlbums(token);
+
                 if (response && response.albumList) {
                     setAlbums(response.albumList);
                 } else {
@@ -48,6 +50,7 @@ const AdminAlbum = () => {
 
         fetchAlbums();
     }, [number]);
+
     const handleFormChange = (e) => {
         setFormData({
             ...formData,
@@ -72,6 +75,7 @@ const AdminAlbum = () => {
             }
 
             setNumber(number + 1);
+            setIsModalOpen(false);
             setSelectedAlbum(null);
             setFormData({ title: '', artist: '', cover_image_url: '', release_date: '' });
         } catch (err) {
@@ -83,7 +87,7 @@ const AdminAlbum = () => {
     const handleDelete = async (albumId) => {
         try {
             const token = localStorage.getItem('token');
-        
+            await UserService.deleteAlbum(albumId, token);
 
             setAlbums(albums.filter((album) => album.album_id !== albumId));
         } catch (err) {
@@ -100,6 +104,19 @@ const AdminAlbum = () => {
             cover_image_url: album.cover_image_url,
             release_date: album.release_date,
         });
+        setIsModalOpen(true);
+    };
+
+    const handleModalOpen = () => {
+        setSelectedAlbum(null);
+        setFormData({ title: '', artist: '', cover_image_url: '', release_date: '' });
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+        setSelectedAlbum(null);
+        setFormData({ title: '', artist: '', cover_image_url: '', release_date: '' });
     };
 
     return (
@@ -124,70 +141,10 @@ const AdminAlbum = () => {
                             </Snackbar>
                         )}
 
-                        <Box mb={4}>
-                            <Typography variant="h6">{selectedAlbum ? 'Edit Album' : 'Create Album'}</Typography>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} md={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Title"
-                                        name="title"
-                                        value={formData.title}
-                                        onChange={handleFormChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Artist ID"
-                                        name="artist"
-                                        value={formData.artist}
-                                        onChange={handleFormChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Cover Image URL"
-                                        name="cover_image_url"
-                                        value={formData.cover_image_url}
-                                        onChange={handleFormChange}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <TextField
-                                        fullWidth
-                                        type="date"
-                                        label="Release Date"
-                                        name="release_date"
-                                        value={formData.release_date}
-                                        onChange={handleFormChange}
-                                        InputLabelProps={{ shrink: true }}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <Box mt={2}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleCreateOrUpdate}
-                                    style={{ marginRight: '10px' }}
-                                >
-                                    {selectedAlbum ? 'Update Album' : 'Create Album'}
-                                </Button>
-                                {selectedAlbum && (
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        onClick={() => {
-                                            setSelectedAlbum(null);
-                                            setFormData({ title: '', artist: '', cover_image_url: '', release_date: '' });
-                                        }}
-                                    >
-                                        Cancel
-                                    </Button>
-                                )}
-                            </Box>
+                        <Box mb={2}>
+                            <Button variant="contained" color="primary" onClick={handleModalOpen}>
+                                Create Album
+                            </Button>
                         </Box>
 
                         <TableContainer component={Paper}>
@@ -248,6 +205,60 @@ const AdminAlbum = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
+
+                        <Dialog open={isModalOpen} onClose={handleModalClose} fullWidth>
+                            <DialogTitle>{selectedAlbum ? 'Edit Album' : 'Create Album'}</DialogTitle>
+                            <DialogContent>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Title"
+                                            name="title"
+                                            value={formData.title}
+                                            onChange={handleFormChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Artist ID"
+                                            name="artist"
+                                            value={formData.artist}
+                                            onChange={handleFormChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Cover Image URL"
+                                            name="cover_image_url"
+                                            value={formData.cover_image_url}
+                                            onChange={handleFormChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            type="date"
+                                            label="Release Date"
+                                            name="release_date"
+                                            value={formData.release_date}
+                                            onChange={handleFormChange}
+                                            InputLabelProps={{ shrink: true }}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleModalClose} color="secondary">
+                                    Cancel
+                                </Button>
+                                <Button onClick={handleCreateOrUpdate} color="primary" variant="contained">
+                                    {selectedAlbum ? 'Update' : 'Create'}
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </>
                 )}
             </Box>

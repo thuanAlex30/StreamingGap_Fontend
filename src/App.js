@@ -13,6 +13,8 @@ import ProfilePage from './components/userspage/ProfilePage';
 import AdminPage from './components/page/Adminpage';
 import AdminAlbum from './components/page/AdminAlbum';
 import Chatpage from './components/page/Chatpage';
+import ChartSong from './components/page/ChartSong';
+import UserAlbums from './components/page/UserAlbums';
 function App() {
     const [profileInfo, setProfileInfo] = useState({});
     useEffect(() => {
@@ -39,12 +41,14 @@ function App() {
             <div className="App">
                 <div className="content">
                     <Routes>
+                        <Route path='/albumhehe' element={<UserAlbums/>}/>
                         <Route path='/profilepage' element={<ProfilePage/>}/>
                         <Route exact path="/" element={<LoginPage />} />
                         <Route exact path="/musicgame" element={<ImportMusicGames />} />
                         <Route exact path="/profile" element={<SpotifyWebPlayer />} />
                         <Route exact path="/Chatpage"element={<Chatpage/>}/>
                         {/* admin */}
+                        <Route path='/chart' element={<ChartSong/>}/>
                         <Route path='/admin/album' element={<AdminAlbum/>}/>
                         <Route path='/adminpage' element={<AdminPage/> } />
                         <Route path='/admin' element={<AdminUser/>} /> {/*quản lí táp vụ admin */}

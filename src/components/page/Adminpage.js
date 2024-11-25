@@ -44,10 +44,15 @@ export default function AdminPage() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ height: '100vh' }}>
       {/* Sidebar */}
       <div style={sidebarStyle}>
         <ul style={ulStyle}>
+        <li style={liStyle}>
+            <Link to="/chart" style={linkStyle}>
+             Chart
+            </Link>
+          </li>
         <li style={liStyle}>
             <Link to="/admin/album" style={linkStyle}>
               Quản lý album
@@ -76,9 +81,7 @@ export default function AdminPage() {
         </ul>
       </div>
 
-      {/* Content */}
-      <div style={contentStyle}>
-      </div>
+    
     </div>
   );
 }

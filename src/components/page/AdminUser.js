@@ -11,12 +11,12 @@ const AdminUser = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [editUser, setEditUser] = useState(null); // User being edited
+    const [editUser, setEditUser] = useState(null); 
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         role: '',
-        avatar_url: '' // Thêm field avatar
+        avatar_url: '' 
     });
 
     useEffect(() => {
@@ -31,6 +31,7 @@ const AdminUser = () => {
 
                 const userData = await UserService.getAllUsers(token);
                 if (userData && userData.userList) {
+                    console.log(userData.userList)
                     setUsers(userData.userList);
                 } else {
                     setError("No users found.");
@@ -52,7 +53,7 @@ const AdminUser = () => {
             username: user.username,
             email: user.email,
             role: user.role,
-            avatar_url: user.avatar_url // Set avatar URL for editing
+            avatar_url: user.avatar_url 
         });
     };
 
@@ -104,7 +105,10 @@ const AdminUser = () => {
         <div style={{display:'flex'}}>
             <AdminPage/>
         <div style={{ display:'block', padding: '20px',width:'1000px' }}>
-            <h1>User Management</h1>        
+        <h1 style={{ fontSize: '2.5rem', textAlign: 'left', marginLeft: '10px' }}>
+             User Management
+         </h1>
+                  
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
