@@ -5,10 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserService from "../service/UserService";
 import "./Header.css";
 import Home from "@mui/icons-material/Home";
-<<<<<<< HEAD
 
-=======
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
 const Header = () => {
    const [profileInfo, setProfileInfo] = useState({});
    const [searchTitle, setSearchTitle] = useState("");
@@ -44,22 +41,14 @@ const Header = () => {
             }
             const response = await UserService.getYourProfile(token);
             setProfileInfo(response.user);
-<<<<<<< HEAD
             console.log("hehe", response);
-=======
-            console.log(response);
-   
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
          } catch (error) {
             console.error("Error fetching profile information:", error.message || error);
          }
       };
       fetchProfileInfo();
    }, []);
-<<<<<<< HEAD
-=======
    
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
 
    useEffect(() => {
       const filterSongs = () => {
@@ -73,7 +62,6 @@ const Header = () => {
 
    const handleLogout = () => {
       UserService.logout();
-<<<<<<< HEAD
       navigate("/");
    };
    const toChatPage = () => {
@@ -91,30 +79,6 @@ const Header = () => {
          <div style={{ color: "white" }}>StreamingGAP</div>
          <Nav className="flex" style={{ display: "flex", alignItems: "center" }}>
             <Nav.Link as={Link} to="/home" className="d-flex align-items-center me-3 navvlink">
-=======
-      navigate("/login");
-   };
-   const toChatPage = () =>{
-      navigate('/chat')
-   }
-   const handleChoose = (song_id) => {
-      navigate(`/song/${song_id}`);
-   };
-
-   const handleAvatarClick = () => {
-      setShowInfo(!showInfo);
-      console.log(showInfo);
-      console.log(profileInfo);
-      
-      
-   };
-
-   return (
-      <Navbar style={{height:'100px'}} bg="black" className="d-flex align-items-center flex navnav">
-         <div style={{ color: "white" }}>StreamingGAP</div>
-         <Nav className="flex" style={{ display: "flex", alignItems: "center" }}>
-            <Nav.Link as={Link} to="/" className="d-flex align-items-center me-3 navvlink">
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
                <Home style={{ color: "white" }} className="nav-con" />
             </Nav.Link>
             <Form className="form-search" style={{ display: "flex", alignItems: "center" }}>
@@ -145,7 +109,6 @@ const Header = () => {
                {profileInfo ? (
                   <>
                      <img
-<<<<<<< HEAD
                         src={profileInfo.avatar_url}
                         alt="User Avatar"
                         style={{
@@ -157,21 +120,12 @@ const Header = () => {
                         onClick={toggleProfileInfo} // Bắt sự kiện click
                      />
 
-=======
-                        onClick={handleAvatarClick}
-                        src={profileInfo.avatar_url}
-                        
-                        // 
-                        alt="User Avatar"
-                     />
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
                      {showInfo && (
                         <div className="profile-info">
                            <p>Email: {profileInfo.email}</p>
                            <p>Role: {profileInfo.role}</p>
                         </div>
                      )}
-<<<<<<< HEAD
                      <Button variant="outline-light" onClick={toChatPage}>
                         Public chat
                      </Button>
@@ -185,14 +139,6 @@ const Header = () => {
                      <Button variant="outline-light" onClick={() => navigate("/profileUser")}>
                         Profile
                      </Button>
-=======
-                     {/* Chat tổng  */}
-                     <Button variant="outline-light" onClick={toChatPage}>Public chat</Button>
-                     <Button variant="outline-light" onClick={handleLogout}>
-                        Logout
-                     </Button>
-                     <Button onClick={()=>{navigate('/localchat')}} variant="outline-light" >Local chat</Button>
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
                   </>
                ) : (
                   <Nav.Link as={Link} to="/login" className="d-flex align-items-center loginbutton">

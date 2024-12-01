@@ -27,11 +27,7 @@ const LoginPage = () => {
                     navigate('/adminpage')
                 }else if(userData.role === "USER")
                 {
-<<<<<<< HEAD
                     navigate('/home')
-=======
-                    navigate('/profile')
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
                 }
                 ; // Redirect to profile page upon success
             } else {

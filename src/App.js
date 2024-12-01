@@ -3,18 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from './components/auth/LoginPage';
 import Header from './components/common/Header';
 import SpotifyWebPlayer from './components/page/SpotifyWebPlayer';
-<<<<<<< HEAD
-import ChatPage  from './components/page/Chatpage';
-import UpdateUser from './components/userspage/UpdateUser';
-import { useState } from 'react';
-import AudioPlayerPage from './components/userspage/AudioPlayerPage';
-import Chatcon from './components/page/Chatcon';
-import ProfilePage from './components/userspage/ProfilePage';
-
-
-function App() {
-    // const [songdetail, setSongdetail] = useState();
-=======
 import ImportMusicGames from './components/page/ImportMusicGames';
 import AdminMusicGamesCRUD from './components/page/AdminMusicGamesCRUD';
 import AdminUser from './components/page/AdminUser';
@@ -27,6 +15,9 @@ import AdminAlbum from './components/page/AdminAlbum';
 import Chatpage from './components/page/Chatpage';
 import ChartSong from './components/page/ChartSong';
 import UserAlbums from './components/page/UserAlbums';
+import ChatCon from './components/page/Chatcon';
+import UpdateUser from './components/userspage/UpdateUser';
+import ChatPage from './components/page/Chatpage';
 function App() {
     const [profileInfo, setProfileInfo] = useState({});
     useEffect(() => {
@@ -47,28 +38,24 @@ function App() {
         fetchProfileInfo();
      }, []);
 
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
     return (
         <BrowserRouter>
             <Header />
             <div className="App">
                 <div className="content">
                     <Routes>
-<<<<<<< HEAD
                         <Route path='/updateUser' element={<UpdateUser/>}/>
                         <Route path='/profileUser' element={<ProfilePage/>}/>
-                        <Route exact path="/" element={<LoginPage />} />
                         <Route exact path="/home" element={<SpotifyWebPlayer />} />
-                        <Route path="/song/:songId" element={<AudioPlayerPage />} />
-                        <Route path='/localchat' element={<Chatcon/>} />
+                        {/* <Route path="/song/:songId" element={<AudioPlayerPage />} /> */}
+                        <Route path='/localchat' element={<ChatCon/>} />
                         <Route exact path="/chat" element={<ChatPage />} />
-=======
                         <Route path='/albumhehe' element={<UserAlbums/>}/>
                         <Route path='/profilepage' element={<ProfilePage/>}/>
                         <Route exact path="/" element={<LoginPage />} />
                         <Route exact path="/musicgame" element={<ImportMusicGames />} />
                         <Route exact path="/profile" element={<SpotifyWebPlayer />} />
-                        <Route exact path="/Chatpage"element={<Chatpage/>}/>
+                      
                         {/* admin */}
                         <Route path='/chart' element={<ChartSong/>}/>
                         <Route path='/admin/album' element={<AdminAlbum/>}/>
@@ -78,7 +65,6 @@ function App() {
                         <Route exact path="/admin/managementeUser" element={<AdminUser />} />  {/*done*/}
                         <Route exact path="/admin/managementSongs" element={<SongManager />} />
                         <Route exact path="/admin/managementArtist" element={<ArtistManagement />} />
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
                     </Routes>
                 </div>
             </div>

@@ -6,12 +6,8 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.4",
-<<<<<<< HEAD
     "@mui/material": "^6.1.5",
-=======
-    "@mui/material": "^6.1.4",
     "@mui/x-charts": "^7.22.2",
->>>>>>> 405ee6a2678549cf25619f6c11b5cde660d0fd92
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -55,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
