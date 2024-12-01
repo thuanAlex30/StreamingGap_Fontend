@@ -36,10 +36,14 @@ const Header = () => {
       const fetchProfileInfo = async () => {
          try {
             const token = localStorage.getItem("token");
+            if (!token) {
+               throw new Error("Token không tồn tại. Vui lòng đăng nhập lại.");
+            }
             const response = await UserService.getYourProfile(token);
             setProfileInfo(response.user);
+            console.log("hehe", response);
          } catch (error) {
-            console.error("Error fetching profile information:", error);
+            console.error("Error fetching profile information:", error.message || error);
          }
       };
       fetchProfileInfo();
@@ -57,22 +61,23 @@ const Header = () => {
 
    const handleLogout = () => {
       UserService.logout();
-      navigate("/login");
+      navigate("/");
    };
-
+   const toChatPage = () => {
+      navigate("/chat");
+   };
    const handleChoose = (song_id) => {
       navigate(`/song/${song_id}`);
    };
-
-   const handleAvatarClick = () => {
-      setShowInfo(!showInfo);
-   };
+   const toggleProfileInfo = () => {
+   setShowInfo(!showInfo);
+};
 
    return (
       <Navbar bg="black" className="d-flex align-items-center flex navnav">
          <div style={{ color: "white" }}>StreamingGAP</div>
          <Nav className="flex" style={{ display: "flex", alignItems: "center" }}>
-            <Nav.Link as={Link} to="/" className="d-flex align-items-center me-3 navvlink">
+            <Nav.Link as={Link} to="/home" className="d-flex align-items-center me-3 navvlink">
                <Home style={{ color: "white" }} className="nav-con" />
             </Nav.Link>
             <Form className="form-search" style={{ display: "flex", alignItems: "center" }}>
@@ -103,18 +108,35 @@ const Header = () => {
                {profileInfo ? (
                   <>
                      <img
-                        onClick={handleAvatarClick}
-                        src={profileInfo?.avatar_url}
+                        src={profileInfo.avatar_url}
                         alt="User Avatar"
+                        style={{
+                           cursor: "pointer",
+                           width: "50px",
+                           height: "50px",
+                           borderRadius: "50%",
+                        }}
+                        onClick={toggleProfileInfo} // Bắt sự kiện click
                      />
+
                      {showInfo && (
                         <div className="profile-info">
                            <p>Email: {profileInfo.email}</p>
                            <p>Role: {profileInfo.role}</p>
                         </div>
                      )}
+                     <Button variant="outline-light" onClick={toChatPage}>
+                        Public chat
+                     </Button>
                      <Button variant="outline-light" onClick={handleLogout}>
                         Logout
+                     </Button>
+                     <Button variant="outline-light" onClick={() => navigate("/localchat")}>
+                        Local chat
+                     </Button>
+                     {/* Nút Profile */}
+                     <Button variant="outline-light" onClick={() => navigate("/profileUser")}>
+                        Profile
                      </Button>
                   </>
                ) : (

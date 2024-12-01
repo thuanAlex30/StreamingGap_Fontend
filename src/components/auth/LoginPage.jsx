@@ -13,21 +13,32 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+    setError('');
         try {
             const userData = await UserService.login(username, password);
-            console.log(userData); // Ensure to see the structure of userData
+            console.log(userData.role); // Ensure to see the structure of userData
             if (userData.token) {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
-                navigate('/profile'); // Redirect to profile page upon success
+                if(userData.role === "ADMIN"){
+                   
+                    navigate('/adminpage')
+                }else if(userData.role === "USER")
+                {
+                    navigate('/home')
+                }
+                ; // Redirect to profile page upon success
             } else {
                 setError(userData.message);
             }
         } catch (error) {
-            console.error("Error logging in:", error);
-            setError("Invalid username or password.");
+            console.log(error);
+            setError(error.message);
+            setTimeout(() => {
+                setError('');
+            }, 5000);
         }
     };
 
@@ -98,7 +109,7 @@ const LoginPage = () => {
 
                 {error && <Typography variant="body2" color="error" align="center">{error}</Typography>}
 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
                     <TextField
                         label="Email hoặc tên người dùng"
                         variant="filled"

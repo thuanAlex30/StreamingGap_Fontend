@@ -100,7 +100,7 @@ class UserService {
 
     static async getYourProfile(token) {
         try {
-            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`, {
+            const response = await axios.get(`${UserService.BASE_URL}/user/get-profile`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             return response.data;
@@ -113,6 +113,17 @@ class UserService {
     static async getUserById(userId, token) {
         try {
             const response = await axios.get(`${UserService.BASE_URL}/admin/get-users/${userId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            return response.data;
+        } catch (err) {
+            console.error('Error fetching user by ID:', err.response ? err.response.data : err.message);
+            throw new Error('Failed to fetch user. Please try again later.');
+        }
+    }
+    static async updateUserByUser(userData, token) {
+        try {
+            const response = await axios.put(`${UserService.BASE_URL}/user/updateProfile`,userData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             return response.data;
@@ -172,5 +183,5 @@ class UserService {
 
 
 }
-
+// 
 export default UserService;
