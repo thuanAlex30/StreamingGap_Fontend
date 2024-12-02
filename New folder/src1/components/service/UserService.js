@@ -2,10 +2,6 @@ import axios from "axios";
 
 class UserService {
     static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; // Use an environment variable
-    static getToken() {
-        return localStorage.getItem('token');
-    }
-    
 
     static async login(username, password) {
         try {
@@ -18,6 +14,9 @@ class UserService {
             console.error('Login Error:', err.response ? err.response.data : err.message);
             throw new Error('Login failed. Please check your credentials and try again.');
         }
+    }
+        static getToken() {
+        return localStorage.getItem('token');
     }
 // Register a new user
 
@@ -105,17 +104,6 @@ static async resetPassword(code, newPassword) {
     static async getSongId(songId,token) {
         try {
             const response = await axios.get(`${this.BASE_URL}/songs/${songId}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            return response.data; // Assuming the API response is structured as shown
-        } catch (error) {
-            console.error("Error fetching songs:", error);
-            throw new Error('Failed to fetch songs. Please try again later.');
-        }
-    }
-    static async getAllAlbum(token) {
-        try {
-            const response = await axios.get(`${this.BASE_URL}/albums`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             return response.data; // Assuming the API response is structured as shown

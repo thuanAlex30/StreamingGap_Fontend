@@ -1,0 +1,111 @@
+/* ResetPasswordPage specific styles */
+.reset-password-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2E4057; /* Background color specific to ResetPasswordPage */
+}
+
+.reset-password-page form {
+    background-color: #f9f9f9; /* Lighter background for contrast */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.reset-password-page input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.reset-password-page input:focus {
+    border-color: #28a745; /* Green border for focus */
+}
+
+.reset-password-page button {
+    padding: 12px;
+    background-color: #28a745; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reset-password-page button:hover {
+    background-color: #218838; /* Darker green for hover */
+}
+
+.reset-password-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #213A58;
+}
+
+/* ForgotPasswordPage specific styles */
+.forgot-password-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #3B4A6B; /* Background color specific to ForgotPasswordPage */
+}
+
+.forgot-password-page form {
+    background-color: #ffffff; /* White background for form */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.forgot-password-page input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.forgot-password-page input:focus {
+    border-color: #ff5722; /* Orange border on focus */
+}
+
+.forgot-password-page button {
+    padding: 12px;
+    background-color: #ff5722; /* Orange background for button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.forgot-password-page button:hover {
+    background-color: #e64a19; /* Darker orange for hover */
+}
+
+.forgot-password-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #213A58; /* Header color */
+}

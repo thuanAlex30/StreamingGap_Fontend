@@ -11,7 +11,6 @@ import ResetPasswordPage from './components/userspage/ResetPasswordPage';
 import ChatCon from './components/page/ChatCon';
 import ChatPage from './components/page/ChatPage';
 import { SessionProvider } from './components/context/SessionContext';
-import UserAlbums from './components/userspage/UserAlbum';
 
 function App() {
     return (
@@ -30,7 +29,6 @@ function App() {
                             <Route path="/verify" element={<VerifyCodePage />} />
                             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                             <Route path="/reset-password" element={<ResetPasswordPage />} />
-                            <Route path='/albummm' element={<UserAlbums/>}></Route>
                         </Routes>
                 </div>
             </div>

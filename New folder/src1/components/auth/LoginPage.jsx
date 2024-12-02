@@ -13,23 +13,15 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
-    setError('');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const userData = await UserService.login(username, password);
-            console.log(userData.role); // Ensure to see the structure of userData
+            // console.log(userData); // Ensure to see the structure of userData
             if (userData.token) {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
-                if(userData.role === "ADMIN"){
-                   
-                    navigate('/adminpage')
-                }else if(userData.role === "USER")
-                {
-                    navigate('/profile')
-                }
-                ; // Redirect to profile page upon success
+                navigate('/home'); // Redirect to profile page upon success
             } else {
                 setError(userData.message);
             }
