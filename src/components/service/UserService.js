@@ -2,8 +2,8 @@ import axios from "axios";
 
 class UserService {
 
-    static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com";
-    // static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; 
+    // static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com";
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; 
     static async login(username, password) {
         try {
             const response = await axios.post(`${UserService.BASE_URL}/auth/login`, { username, password });
@@ -17,7 +17,50 @@ class UserService {
         }
     }
 // Register a new user
+ 
+static async loginWithGoogle(idToken) {
+    try {
+        const response = await axios.post(
+            `${UserService.BASE_URL}/auth/login/google`, 
+            { idToken }
+            
+        );
+        const { token, username, email, role } = response.data;
 
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("role", role);
+        if (response.data.token) {
+            this.setAuthData(response.data); 
+            localStorage.setItem('token', response.data.token);
+        }
+        return response.data;
+    } catch (err) {
+        console.error("API Error:", err);
+        console.log("Status:", err.response?.status);
+        console.log("Error Details:", err.response?.data);
+        this.handleApiError(err);
+    }
+}
+
+
+
+static setAuthData(data) {
+    localStorage.setItem('auth-token', data.token);
+    localStorage.setItem('chat-username', data.email || data.username);
+
+}
+
+static handleApiError(err) {
+    if (err.response) {
+        console.error('API Error:', err.response.data);
+        console.error('Status:', err.response.status);
+    } else {
+        console.error('Network Error:', err.message);
+    }
+    throw new Error('Something went wrong. Please try again later.');
+}
 static async register(userData) {
     try {
         const response = await axios.post(`${this.BASE_URL}/auth/register`, userData, { withCredentials: true });
