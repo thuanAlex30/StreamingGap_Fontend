@@ -27,7 +27,7 @@ const AudioPlayerPage = () => {
                     throw new Error('Token not found. Please login again.');
                 }
 
-                const response = await axios.get(`http://localhost:1010/songs/${songId}`, {
+                const response = await axios.get(`https://streaminggap.onrender.com/songs/${songId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
