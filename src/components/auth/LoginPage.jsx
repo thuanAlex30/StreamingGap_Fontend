@@ -6,11 +6,13 @@ import AppleIcon from '@mui/icons-material/Apple';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
+import { GoogleLogin } from '@react-oauth/google';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -43,6 +45,24 @@ const LoginPage = () => {
             }, 5000);
         }
     };
+    const handleGoogleSuccess = async (credentialResponse) => {
+        const { credential } = credentialResponse;
+        try {
+            const response = await UserService.loginWithGoogle(credential);
+            if (response.token) {
+                localStorage.setItem('auth-token', response.token);
+                localStorage.setItem('role', response.role);
+                navigate('/home');
+            }
+        } catch (error) {
+            setError('Google login failed. Please try again.');
+            console.error(error);
+        }
+    };
+
+    const handleGoogleFailure = () => {
+        setError('Google login failed. Please try again.');
+    };
 
     return (
         <Box
@@ -71,14 +91,13 @@ const LoginPage = () => {
                 </Typography>
 
                 <Box mb={3}>
-                    <Button
-                        variant="outlined"
-                        fullWidth
-                        startIcon={<GoogleIcon />}
-                        sx={{ color: '#fff', borderColor: '#535353', mb: 1, '&:hover': { borderColor: '#fff' } }}
-                    >
-                        Tiếp tục bằng Google
-                    </Button>
+                    <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={handleGoogleFailure}
+                        useOneTap
+                        shape="circle"
+                        text="continue_with"
+                    />
                     <Button
                         variant="outlined"
                         fullWidth
