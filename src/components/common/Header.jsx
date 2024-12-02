@@ -61,9 +61,14 @@ const Header = () => {
    }, [searchTitle, songs]);
 
    const handleLogout = () => {
-      UserService.logout();
-      navigate("/");
-   };
+      localStorage.removeItem('token');
+      if (!localStorage.getItem('token')) {
+          navigate("/");
+      } else {
+          console.error("Failed to remove token.");
+      }
+  };
+  
    const toChatPage = () => {
       navigate("/chat");
    };

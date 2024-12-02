@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
+import Header from '../common/Header';
 function UserManagementPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,6 +45,8 @@ function UserManagementPage() {
   if (loading) return <div>Loading users...</div>;
   if (error) return <div>{error}</div>;
   return (
+    <div>
+            <Header/>
       <div className="user-management-container">
         <h2>User Management Page</h2>
         <button className="reg-button">
@@ -88,6 +91,7 @@ function UserManagementPage() {
           )}
           </tbody>
         </table>
+      </div>
       </div>
   );
 }

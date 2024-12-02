@@ -8,6 +8,7 @@ import {
 import Axios from 'axios';
 import UserService from '../service/UserService';
 import AdminPage from './Adminpage';
+import Header from '../common/Header';
 
 const AdminAlbum = () => {
     const [albums, setAlbums] = useState([]);
@@ -120,6 +121,9 @@ const AdminAlbum = () => {
     };
 
     return (
+        <div>
+            <Header/>
+       
         <Box display="flex">
             <AdminPage />
             <Box flex={1} p={4}>
@@ -263,6 +267,7 @@ const AdminAlbum = () => {
                 )}
             </Box>
         </Box>
+        </div>
     );
 };
 

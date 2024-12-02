@@ -6,6 +6,7 @@ import {
 import UserService from '../service/UserService';
 import AdminPage from './Adminpage';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import Header from '../common/Header';
 
 const style = {
     position: 'absolute',
@@ -132,6 +133,8 @@ function AdminMusicGamesCRUD() {
     if (isLoading) return <p>Loading...</p>;
 
     return (
+        <div>
+            <Header/>
         <div style={{ display: 'flex' }}>
             <AdminPage />
             <div style={{ width: '100%', padding: "23px" }}>
@@ -230,6 +233,7 @@ function AdminMusicGamesCRUD() {
                     </Box>
                 </Modal>
             </div>
+        </div>
         </div>
     );
 }

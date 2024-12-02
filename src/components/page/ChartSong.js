@@ -3,6 +3,7 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import AdminPage from "./Adminpage";
 import UserService from "../service/UserService";
 import '../css/Chart.css'
+import Header from "../common/Header";
 export default function ChartSong() {
    const [songList, setSongList] = useState([]);
    const [series, setSeries] = useState([{ data: [] }]);
@@ -36,6 +37,8 @@ export default function ChartSong() {
    }, [songList]);
 
    return (
+      <div>
+            <Header/>
       <div style={styles.container}>
          <div style={styles.sidebar}>
             <AdminPage />
@@ -50,6 +53,7 @@ export default function ChartSong() {
                xAxis={[{ data: tittle, scaleType: "band" }]}
             />
          </div>
+      </div>
       </div>
    );
 }

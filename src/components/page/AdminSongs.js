@@ -5,6 +5,7 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button,
     TextField, Typography, Box, CircularProgress, Modal
 } from '@mui/material';
+import Header from '../common/Header';
 
 const SongManager = () => {
     const [songs, setSongs] = useState([]);
@@ -76,6 +77,8 @@ const SongManager = () => {
     };
 
     return (
+        <div>
+            <Header/>
         <Box sx={{ display: 'flex', gap: 4 }}>
             <AdminPage />
             <Box sx={{ flexGrow: 1 ,    padding: "8px"}}>
@@ -232,6 +235,7 @@ const SongManager = () => {
                 )}
             </Box>
         </Box>
+        </div>
     );
 };
 

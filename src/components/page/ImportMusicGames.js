@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
 import '../css/ImportMusicGames.css'; // Assume there's a CSS file for styling
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import icons from react-icons
+import Header from '../common/Header';
 
 function ImportMusicGames() {
     const [musicGames, setMusicGames] = useState([]);
@@ -75,6 +76,8 @@ function ImportMusicGames() {
     const currentGame = musicGames[currentGameIndex];
 
     return (
+        <div>
+            <Header/>
         <div className="music-game-container">
             <h1>Music Games</h1>
             {score === null ? ( 
@@ -109,6 +112,7 @@ function ImportMusicGames() {
             ) : (
                 <h2>Your score is: {score}</h2> 
             )}
+        </div>
         </div>
     );
 }

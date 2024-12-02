@@ -21,6 +21,7 @@ import {
 } from '@mui/material';
 import { Add, Edit, Delete } from '@mui/icons-material';
 import AdminPage from './Adminpage';
+import Header from '../common/Header';
 
 function AdminArtistCRUD() {
     const [artists, setArtists] = useState([]);
@@ -121,6 +122,8 @@ function AdminArtistCRUD() {
     if (isLoading) return <Typography>Loading...</Typography>;
 
     return (
+        <div>
+            <Header/>
         <div style={{ display: 'flex' }}>
             <AdminPage />
             <Container>
@@ -220,6 +223,7 @@ function AdminArtistCRUD() {
                     </DialogActions>
                 </Dialog>
             </Container>
+        </div>
         </div>
     );
 }

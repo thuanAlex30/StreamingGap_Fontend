@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import UserService from '../service/UserService';
 import AdminPage from './Adminpage';
+import Header from '../common/Header';
 
 const AdminUser = () => {
     const [users, setUsers] = useState([]);
@@ -102,6 +103,8 @@ const AdminUser = () => {
     }
 
     return (
+        <div>
+            <Header/>
         <div style={{display:'flex'}}>
             <AdminPage/>
         <div style={{ display:'block', padding: '20px',width:'1000px' }}>
@@ -211,6 +214,7 @@ const AdminUser = () => {
                     </form>
                 </div>
             )}
+        </div>
         </div>
     );
 };

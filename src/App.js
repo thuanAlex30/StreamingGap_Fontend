@@ -40,7 +40,6 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Header />
             <div className="App">
                 <div className="content">
                     <Routes>

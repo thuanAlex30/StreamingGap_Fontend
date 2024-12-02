@@ -54,6 +54,10 @@ function UpdateUser() {
   };
 
   return (
+    <div> 
+    <div style={{marginBottom:'70px'}}>
+        < Header/>
+        </div>
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={styles.header}>Update User</h2>
@@ -94,6 +98,7 @@ function UpdateUser() {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 }
