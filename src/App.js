@@ -53,7 +53,7 @@ function App() {
       <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
         <BrowserRouter>
           <div className="App">
-            <Header />
+  
             <div className="content">
               <Routes>
                 <Route path="/" element={<LoginPage />} />
