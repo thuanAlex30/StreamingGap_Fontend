@@ -29,8 +29,8 @@ const SpotifyWebPlayer = () => {
             }
         };
 
-        fetchSongs();
-    }, []);
+      fetchSongs();
+   }, []);
 
     const handleSongClick = (songId) => {
         navigate(`/song/${songId}`);
@@ -40,13 +40,13 @@ const SpotifyWebPlayer = () => {
         return <p>Loading...</p>;
     }
 
-    if (error) {
-        return <p>{error}</p>;
-    }
+   if (isLoading) {
+      return <p>Loading...</p>;
+   }
 
-    if (songs.length === 0) {
-        return <p>No songs available.</p>;
-    }
+   if (error) {
+      return <p>{error}</p>;
+   }
 
     return (
         <div>

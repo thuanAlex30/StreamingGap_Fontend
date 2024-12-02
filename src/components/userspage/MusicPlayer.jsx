@@ -4,6 +4,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import UserService from '../service/UserService';  // Assuming you have a UserService to fetch song details
+import Header from '../common/Header';
 
 const MusicPlayer = () => {
     const [songs, setSongs] = useState([]);
@@ -55,6 +56,8 @@ const MusicPlayer = () => {
     }, [audio]);
 
     return (
+        <div>
+        <Header/>
         <Box
             sx={{
                 display: 'flex',
@@ -111,6 +114,7 @@ const MusicPlayer = () => {
                 </Box>
             )}
         </Box>
+        </div>
     );
 };
 

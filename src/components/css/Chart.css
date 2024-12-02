@@ -1,0 +1,21 @@
+.MuiChartsAxis-tickLabel{
+    font-size: 15px !important;
+
+}
+.css-175e1i1-MuiChartsAxis-root-MuiChartsYAxis-root .MuiChartsAxis-tick {
+    stroke: rgba(255, 255, 255, 0) !important;
+    shape-rendering: crispEdges;
+}
+.MuiChartsAxis-tick{
+    stroke: none !important;
+}
+.css-175e1i1-MuiChartsAxis-root-MuiChartsYAxis-root .MuiChartsAxis-line {
+    stroke: rgba(76, 76, 76, 0.87) !important;
+    shape-rendering: crispEdges !important;
+    stroke-width: 2 !important;
+}
+.css-1x2wln8-MuiChartsAxis-root-MuiChartsXAxis-root .MuiChartsAxis-line {
+    stroke: rgba(0, 0, 0, 0.87);
+    shape-rendering: crispEdges;
+    stroke-width: 2 !important;
+}

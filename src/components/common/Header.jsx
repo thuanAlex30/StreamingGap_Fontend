@@ -48,6 +48,7 @@ const Header = () => {
       };
       fetchProfileInfo();
    }, []);
+   
 
    useEffect(() => {
       const filterSongs = () => {
@@ -60,9 +61,14 @@ const Header = () => {
    }, [searchTitle, songs]);
 
    const handleLogout = () => {
-      UserService.logout();
-      navigate("/");
-   };
+      localStorage.removeItem('token');
+      if (!localStorage.getItem('token')) {
+          navigate("/");
+      } else {
+          console.error("Failed to remove token.");
+      }
+  };
+  
    const toChatPage = () => {
       navigate("/chat");
    };
@@ -77,12 +83,12 @@ const Header = () => {
       <Navbar bg="black" className="d-flex align-items-center flex navnav">
          <div style={{ color: "white" }}>StreamingGAP</div>
          <Nav className="flex" style={{ display: "flex", alignItems: "center" }}>
-            <Nav.Link as={Link} to="/" className="d-flex align-items-center me-3 navvlink">
+            <Nav.Link as={Link} to="/home" className="d-flex align-items-center me-3 navvlink">
                <Home style={{ color: "white" }} className="nav-con" />
             </Nav.Link>
             <Form className="form-search" style={{ display: "flex", alignItems: "center" }}>
                <FormControl
-type="search"
+                  type="search"
                   placeholder="Bạn muốn phát nội dung gì?"
                   className="me-2"
                   aria-label="Search"
@@ -134,7 +140,9 @@ type="search"
                      <Button variant="outline-light" onClick={() => navigate("/localchat")}>
                         Local chat
                      </Button>
-                   
+                     <Button variant="outline-light" onClick={() => navigate("/profileUser")}>
+                        Profile
+                     </Button>
                   </>
                ) : (
                   <Nav.Link as={Link} to="/login" className="d-flex align-items-center loginbutton">

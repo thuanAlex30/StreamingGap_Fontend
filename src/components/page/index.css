@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .w {
    overflow-x: hidden; 
    overflow-y: auto;   
@@ -39,3 +40,53 @@
    background-color: rgba(0, 0, 0, 0.5); 
    border-radius: 20px; 
 }
+=======
+.w {
+   overflow-x: hidden; 
+   overflow-y: auto;   
+   border-radius: 20px; 
+   
+}
+
+
+.w::-webkit-scrollbar-thumb {
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: 20px; 
+}
+
+.w::-webkit-scrollbar-track {
+   background-color: #f1f1f1; 
+   border-radius: 20px;
+}
+.player-container{
+   padding: 10 !important;
+}
+.contentb{
+   display: block;
+   background-color: #333;
+   width: 400px;
+   height: 80vh;
+   margin-top: 45px;
+   border-radius: 30px;
+}
+
+.w {
+   overflow-y: auto; 
+}
+
+.w::-webkit-scrollbar {
+   width: 10px; 
+}
+
+.w::-webkit-scrollbar-thumb {
+   background-color: rgba(0, 0, 0, 0.5); 
+   border-radius: 20px; 
+}
+.namesender{
+   color:'#94969B';
+}
+.tinnhanhehe{
+   background-color: #E95224 !important;
+   color:white
+}
+>>>>>>> cdcf13abdb8c00b13caa7896b9ac1c714c5d1e90

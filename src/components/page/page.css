@@ -140,3 +140,146 @@
  .ddd{
     padding: 0px !important;
  }
+.chatbox {
+   animation: trenxuong 1s ease-in forwards;
+   background: rgb(253, 29, 29);
+   background: linear-gradient(to right, #ffe5e5, #fff5cc);
+}
+.chatpage {
+   margin: 0 auto !important;
+   background: linear-gradient(to right, #f18c8c, #e9ce62) !important;
+}
+.roomchat {
+   background-color: white;
+   color: black !important;
+}
+.send {
+   border-radius: 10px !important;
+   border: 1px solid #333333;
+   background-color: white;
+   color: #333333 !important;
+}
+.mess {
+   border-radius: 13px;
+}
+.hehe {
+   color: #333333;
+}
+.bicc {
+   background-color: rgb(255, 255, 255);
+   color: #333333 !important;
+}
+.file {
+   border: 1px solid #333333;
+   margin-top: 10px;
+   border-radius: 10px;
+   background-color: rgb(255, 255, 255);
+   color: black;
+}
+.totalchat {
+   background-color: rgb(255, 255, 255);
+   padding-left: 10px !important;
+   padding-right: 10px !important;
+   border-bottom-left-radius: 15px;
+   border-bottom-right-radius: 15px;
+}
+.inputsend {
+   border: none !important;
+}
+.chatpa {
+   height: 92vh;
+   margin: auto;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-image: url("danxinh.jpg");
+}
+
+.chatpa {
+   animation: duoilen 1s forwards;
+}
+
+.hihi {
+   margin-top: 0 !important;
+}
+.texttotal {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100px;
+   margin: 0 auto;
+   font-size: 50px;
+}
+@keyframes duoilen {
+   0% {
+      transform: translateY(50%);
+      opacity: 0;
+   }
+   100% {
+      transform: translateY(0);
+      opacity: 0.8;
+   }
+}
+@keyframes trenxuong {
+   0% {
+      transform: translateY(-50%);
+      opacity: 0 ;
+   }
+   100% {
+      transform: translateY(0);
+      opacity: 1 ;
+   }
+}
+.cc{
+   display: block;
+   background-color: white;
+   padding: 7px;
+   border-radius: 10px;
+}
+.file{
+   color:black;
+}
+.vcl{
+   margin: 0 auto;
+}
+.namesender{
+   color: #333333;
+   background-color: none;
+   font-size: 10px;
+   display: flex;
+   justify-content: end;
+}
+.bg-blue-500{
+   background: linear-gradient(to right,#fff5cc, #ececec);
+}
+.f{
+   display: block;
+   background-color: #f18c8c;
+   border-radius: 5px;
+   margin-top: 5px;
+   padding: 1px;
+   padding-left: 4px;
+   padding-right: 4px;
+}
+.justify-end{
+   
+}
+.dp{display: flex;
+justify-content: start
+;}
+.bg-white{
+   background: rgb(253, 29, 29);
+   background: linear-gradient(to right, #ffe5e5, #fff5cc);
+}
+.ik{
+   background: linear-gradient(to right, #ffbcbc, #f5dd7c);
+   color: #ffffff;
+   margin: 0;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+.ddd{
+   padding: 0px !important;
+}

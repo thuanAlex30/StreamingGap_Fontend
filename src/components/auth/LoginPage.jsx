@@ -27,7 +27,7 @@ const LoginPage = () => {
                     navigate('/adminpage')
                 }else if(userData.role === "USER")
                 {
-                    navigate('/profile')
+                    navigate('/home')
                 }
                 ; // Redirect to profile page upon success
             } else {
