@@ -50,15 +50,16 @@ const Header = () => {
    }, []);
    
 
-   useEffect(() => {
-      const filterSongs = () => {
-         const filtered = songs.filter((song) =>
-            song.title.toLowerCase().includes(searchTitle.toLowerCase())
-         );
-         setFilteredSongs(filtered);
-      };
-      filterSongs();
-   }, [searchTitle, songs]);
+  useEffect(() => {
+   const filterSongs = () => {
+      const filtered = songs.filter((song) =>
+         song.title && song.title.toLowerCase().includes(searchTitle.toLowerCase())
+      );
+      setFilteredSongs(filtered);
+   };
+   filterSongs();
+}, [searchTitle, songs]);
+
 
    const handleLogout = () => {
       localStorage.removeItem('token');
