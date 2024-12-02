@@ -102,7 +102,7 @@ const ChatPage = () => {
          return;
       }
 
-      const sock = new SockJS(`http://localhost:1010/ws?token=${token}`);
+      const sock = new SockJS(`https://streaminggap.onrender.com/ws?token=${token}`);
       stompClient.current = new Client({
          webSocketFactory: () => sock,
          onConnect: () => {
@@ -216,7 +216,7 @@ const ChatPage = () => {
    const fetchChatHistory = async (user1, user2) => {
       try {
          const response = await axios.get(
-            `http://localhost:1010/chatmessages/api/messages/history/${user1}/${user2}`,
+            `https://streaminggap.onrender.com/chatmessages/api/messages/history/${user1}/${user2}`,
             {
                headers: { Authorization: `Bearer ${token}` },
             }
