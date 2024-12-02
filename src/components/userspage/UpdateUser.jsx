@@ -55,9 +55,6 @@ function UpdateUser() {
 
   return (
     <div> 
-    <div style={{marginBottom:'70px'}}>
-        < Header/>
-        </div>
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={styles.header}>Update User</h2>
@@ -87,7 +84,7 @@ function UpdateUser() {
           <div style={styles.formGroup}>
             <label style={styles.label}>Avatar URL:</label>
             <input
-              type="file"
+              type="text"
               name="avatar_url"
               onChange={handleInputChange}
               style={styles.input}

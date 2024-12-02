@@ -19,7 +19,7 @@ const AudioPlayerPage = () => {
     const MAX_LYRICS_LENGTH = 200; // Giới hạn số ký tự hiển thị ban đầu
     
     useEffect(() => {
-        const token = UserService.getToken();
+        const token = localStorage.getItem('token');
         const fetchAudioUrl = async () => {
             try {
               

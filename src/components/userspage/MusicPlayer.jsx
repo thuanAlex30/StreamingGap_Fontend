@@ -57,7 +57,7 @@ const MusicPlayer = () => {
 
     return (
         <div>
-        <Header/>
+
         <Box
             sx={{
                 display: 'flex',

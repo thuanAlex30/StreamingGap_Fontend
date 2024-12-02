@@ -232,7 +232,7 @@ const ChatPage = () => {
 
    return (
       <div>
-         <div style={{marginBottom:'70px'}}>
+         <div >
          < Header/>
          </div>
       <div style={{height:'92vh'}} className="flex items-center justify-center w-[100%] chatpage">

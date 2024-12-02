@@ -2,8 +2,8 @@ import axios from "axios";
 
 class UserService {
 
-    static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com";
-    // static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; 
+    // static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com";
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; 
     static async login(username, password) {
         try {
             const response = await axios.post(`${UserService.BASE_URL}/auth/login`, { username, password });
@@ -67,9 +67,8 @@ static async resetPassword(code, newPassword) {
 }
 
 
-    static async getSongById(songId) {
+    static async getSongById(songId,token) {
         try {
-            const token = this.getToken();
             if (!token) {
                 throw new Error('Token not found. Please login again.');
             }

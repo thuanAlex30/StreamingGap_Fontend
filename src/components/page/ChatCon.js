@@ -248,7 +248,7 @@ if (message.trim() || media) {
 
    return (
       <div>
-         <div style={{ marginBottom: "70px" }}>
+         <div >
             <Header />
          </div>
          <div

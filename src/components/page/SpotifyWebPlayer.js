@@ -92,7 +92,7 @@ const SpotifyWebPlayer = () => {
             </div>
             </div>
         </div>
-        <Footer/>
+        
         </div>
     );
 };

@@ -139,6 +139,7 @@
 
 .now-playing {
     margin-bottom: 10px; /* Khoảng cách giữa tiêu đề và lời bài hát */
+    text-align: center;
 }
 .toggle-lyrics-btn {
     background-color: #1db954; /* Màu nền nút */
@@ -305,12 +306,21 @@
     color: #bbb;
   }
 .navnav {
-   position: fixed;
    top: 0;
    width: 100%;
    z-index: 1000;
 }
-
+.rhap_container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    font-family: inherit;
+    width: 500px !important;
+    padding: 10px 15px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  }
 .userl img {
    width: 40px;
    height: 40px;
@@ -372,3 +382,4 @@
     border-radius: 20px;
     padding-left: 20px;
 }
+

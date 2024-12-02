@@ -43,7 +43,6 @@ img{
 }
 .songs-grid{
     padding-left: 10px;
-    width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s;
 }

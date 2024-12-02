@@ -13,6 +13,7 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
     setError('');
@@ -20,6 +21,7 @@ const LoginPage = () => {
             const userData = await UserService.login(username, password);
             console.log(userData.role); // Ensure to see the structure of userData
             if (userData.token) {
+                localStorage.setItem('auth-token', userData.token);
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
                 if(userData.role === "ADMIN"){
