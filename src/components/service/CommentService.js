@@ -2,7 +2,7 @@ import axios from "axios";
 
 // CommentService.js
 class CommentService {
-    static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; 
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com";
 
     static async getAllComments(token) {
         try {
