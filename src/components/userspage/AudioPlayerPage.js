@@ -47,7 +47,7 @@ const AudioPlayerPage = () => {
                 setComments(commentResponse.commentList || []);
 
                 // Check if the user has a Premium subscription
-                const premiumResponse = await axios.get('http://localhost:1010/subscription/isPremium', {
+                const premiumResponse = await axios.get('https://streaminggap.onrender.com/subscription/isPremium', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
