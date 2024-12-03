@@ -18,6 +18,9 @@ class UserService {
     }
 // Register a new user
  
+static getToken() {
+    return localStorage.getItem('token');
+}
 static async loginWithGoogle(idToken) {
     try {
         const response = await axios.post(

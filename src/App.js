@@ -25,6 +25,8 @@ import AdminAlbum from './components/page/AdminAlbum';
 import ChartSong from './components/page/ChartSong';
 import UserAlbums from './components/page/UserAlbums';
 import UpdateUser from './components/userspage/UpdateUser';
+import YouTubeSearch from './components/page/YoutubeSearch'
+import SubscriptionUpgrade  from './components/userspage/SubscriptionUpgrade';
 import { GoogleLogin } from '@react-oauth/google';
 
 function App() {
@@ -53,7 +55,7 @@ function App() {
       <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
         <BrowserRouter>
           <div className="App">
-            <Header />
+            {/* <Header /> */}
             <div className="content">
               <Routes>
                 <Route path="/" element={<LoginPage />} />
@@ -69,6 +71,8 @@ function App() {
                 <Route path='/localchat' element={<ChatCon />} />
                 <Route exact path="/chat" element={<ChatPage />} />
                 <Route exact path="/musicgame" element={<ImportMusicGames />} />
+                <Route path="/youtube/search" element={<YouTubeSearch />} />
+                <Route exact path="/premium" element={<SubscriptionUpgrade />} />
                 
                 {/* Admin Routes */}
                 <Route path='/chart' element={<ChartSong />} />

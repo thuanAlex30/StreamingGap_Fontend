@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import { FaBell } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { FaYoutube } from "react-icons/fa";
 import UserService from "../service/UserService";
 import "./Header.css";
 import Home from "@mui/icons-material/Home";
@@ -48,7 +49,7 @@ const Header = () => {
       };
       fetchProfileInfo();
    }, []);
-   
+
 
    useEffect(() => {
       const filterSongs = () => {
@@ -63,12 +64,12 @@ const Header = () => {
    const handleLogout = () => {
       localStorage.removeItem('token');
       if (!localStorage.getItem('token')) {
-          navigate("/");
+         navigate("/");
       } else {
-          console.error("Failed to remove token.");
+         console.error("Failed to remove token.");
       }
-  };
-  
+   };
+
    const toChatPage = () => {
       navigate("/chat");
    };
@@ -76,8 +77,8 @@ const Header = () => {
       navigate(`/song/${song_id}`);
    };
    const toggleProfileInfo = () => {
-   setShowInfo(!showInfo);
-};
+      setShowInfo(!showInfo);
+   };
 
    return (
       <Navbar bg="black" className="d-flex align-items-center flex navnav">
@@ -104,7 +105,24 @@ const Header = () => {
                   </ul>
                )}
             </Form>
-            <Button variant="outline-light" className="me-3">
+
+            {/* Thêm tooltip vào icon YouTube */}
+            <div className="youtube-icon-container">
+               <FaYoutube
+                  size={40}
+                  color="red"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/youtube/search")}
+               />
+               <span className="youtube-tooltip">Search Karaoke by YouTube</span>
+            </div>
+
+
+            <Button
+               variant="outline-light"
+               className="me-3"
+               onClick={() => navigate("/premium")}
+            >
                Khám phá Premium
             </Button>
             <Nav.Link as={Link} to="#notifications" className="d-flex align-items-center me-3">

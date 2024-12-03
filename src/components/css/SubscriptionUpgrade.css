@@ -1,0 +1,100 @@
+/* Container chính */
+.subscription-upgrade-container {
+    padding: 20px;
+    background-color: #f4f4f4; /* Màu nền sáng */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tiêu đề và mô tả */
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Danh sách các gói đăng ký */
+.subscriptions-list {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+    gap: 20px; /* Khoảng cách giữa các card */
+    justify-content: center; /* Căn giữa các phần tử */
+    padding: 20px;
+    max-width: 1200px; /* Giới hạn chiều rộng */
+}
+
+/* Thẻ đăng ký */
+.subscription-card {
+    flex: 1 1 300px; /* Mỗi thẻ có kích thước tối thiểu là 300px */
+    max-width: 350px; /* Giới hạn chiều rộng tối đa */
+    background-color: #1a1a1a; /* Màu nền thẻ */
+    color: #fff; /* Màu chữ trắng */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subscription-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #00ff7f; /* Màu xanh lá nổi bật */
+}
+
+.subscription-card p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.subscription-card:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Nút nâng cấp */
+.upgrade-button-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.upgrade-button {
+    padding: 15px 30px;
+    background-color: #00ff7f; /* Màu xanh lá nổi bật */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upgrade-button:hover {
+    background-color: #00cc66; /* Tối hơn khi hover */
+}
+
+.upgrade-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Thông báo lỗi */
+.message {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #ff4d4d; /* Màu đỏ nổi bật */
+}
