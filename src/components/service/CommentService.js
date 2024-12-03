@@ -1,7 +1,11 @@
 import axios from "axios";
 
 class CommentService {
+<<<<<<< HEAD
     static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:1010"; // Use an environment variable
+=======
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "https://streaminggap.onrender.com";
+>>>>>>> e90d4c1f1c03e28abb499b9d1fe1d8d1d5dbd57f
 
     static async getAllComments(token) {
         try {
